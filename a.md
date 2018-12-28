@@ -1,4 +1,4 @@
-2018-12-28일 공부내용 정리
+2018-12-28일 수업내용 정리
 ==================================
 접근자
 -----
@@ -13,7 +13,7 @@
   * 접근 제한: 모든 외부 클래스(내부 전용)
 * default(왠만하면 접근 지시자 꼭 붙여야함)
   * 같은 패키지 이외의 클래스
-<hr>
+------------------------------
 static 클래스 변수
 -------
 
@@ -49,4 +49,72 @@ Class Main{<br/>
 
 
 ----------------------------------------------
-자바에서는 객체를 사용하여 C언어 포인터 변경을 한다.
+자바에서는 객체를 사용하여 C언어 포인터 변경을 한다.<br>
+
+public class StaticMethod {<br>
+	private int n;<br>
+	public static int m;<br>
+
+	public int getN() {
+		return n;
+	}
+	public void setN(int n) {
+		this.n = n;
+	}
+	public static int getM() {
+		return m;
+	}
+	public static void setM(int m) {
+		StaticMethod.m = m;
+	}
+	public void f1()
+	{
+		n=10;
+
+
+		//원칙적으로는 클래스이름(네임스페이스) 로 접근해야함
+		//하지만 같은 클래스인 경우에는 생략가능하다.
+		//StaticMethod.m = 20;
+		m=20;
+	}
+	public static void f2()
+	{
+		//error
+		//n=10;
+		m=30;
+	}
+	public void f3()
+	{
+		f1();
+		f2();
+	}
+	public static void f4()
+	{
+		//error
+		//f1();
+		f2();
+	}
+	public static void main(String[] args)
+	{
+		f2();
+		f4();
+    //f1(),f3(); error
+	}
+}
+<hr>
+
+리펙토링
+-------
+public void show() <br>
+	{<br>
+		System.out.println("점[x="+x+", y="+y+"]을 그렸습니다");<br>
+	}<br><br><br>
+	public void show(boolean visible)<br>
+	{<br>	if(visible)<br>
+		{<br>
+			show(); **//리펙토링 방식 이렇게 하면 유지보수가 좋다.**
+      <br>
+		}<br>
+		else<br>
+			System.out.println("점[x="+x+", y="+y+"]을 지웠습니다.");<br>
+	}<br>
