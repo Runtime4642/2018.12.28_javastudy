@@ -15,15 +15,18 @@
   * 같은 패키지 이외의 클래스
 <hr>
 static 클래스 변수
------
+-------
 
 * 클래스 이름으로 접근가능
 
 <br/>
-Class A{
+Class A{<br/>
   static int a; //클래스변수<br/>
   int b;       //인스턴스 변수<br/>
-...
+...<br/>
+  public void swap(){<br/>
+    int c; //지역 변수<br/>
+  }<br/>
 }
 <br/>
 Class Main{<br/>
@@ -42,6 +45,8 @@ Class Main{<br/>
 * 클래스 변수
   * 클래스가 메모리에 올라갈때 생성됨
   * method area에 저장
+![Alt text](/스케치.png)
+
 
 ----------------------------------------------
 자바에서는 객체를 사용하여 C언어 포인터 변경을 한다.
